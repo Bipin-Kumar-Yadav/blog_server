@@ -67,9 +67,20 @@ const deleteUser = async(req,res)=>{
    }
 
 }
-
+const signout = async (req,res)=>{
+    try {
+        return res.clearCookie('access_token').status(200).json({
+            message : "User is sign out successfully"
+        })
+    } catch (error) {
+        return res.status(500).json({
+            error : "Backend Error while signing out"
+        })
+    }
+}
 module.exports = {
     test,
     updateUser,
     deleteUser,
+    signout
 }

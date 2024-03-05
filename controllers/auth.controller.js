@@ -66,6 +66,7 @@ const signin = async (req, res) => {
     const token = jwt.sign(
       {
         id: validUser._id,
+        isAdmin : validUser.isAdmin
       },
       process.env.JWT_SECRET
     );
@@ -96,6 +97,7 @@ try {
       const token = jwt.sign(
         {
           id: existingUser._id,
+          isAdmin : existingUser.isAdmin
         },
         process.env.JWT_SECRET
       );
@@ -123,7 +125,8 @@ try {
       await newUser.save();
       
       const token = jwt.sign({
-        id:newUser._id
+        id:newUser._id,
+        isAdmin : newUser.isAdmin
       },
         process.env.JWT_SECRET
       )
